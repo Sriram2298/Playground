@@ -20,7 +20,7 @@ export default function Sidebar() {
           </div>
           <div>
             <p className="text-sm font-semibold text-gray-900">Finance Agent</p>
-            <p className="text-xs text-gray-400">by Zamp</p>
+            <p className="text-xs text-gray-400">Autonomous AP/AR</p>
           </div>
         </div>
       </div>
@@ -46,8 +46,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="px-4 py-4 border-t border-gray-100">
-        <p className="text-xs text-gray-400">Digital Finance Employee</p>
-        <p className="text-xs text-gray-300 mt-0.5">Autonomous AP/AR</p>
+        <p className="text-xs text-gray-400">Autonomous AP/AR</p>
       </div>
     </aside>
   );
