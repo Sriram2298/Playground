@@ -29,7 +29,7 @@ export function matchInvoiceToPO(extracted: ExtractionResult): {
       timestamp: now,
       type: "flagged_discrepancy",
       description: `No matching PO found for vendor "${extracted.vendor}". Flagged for manual review.`,
-      draftedEmail: `Subject: Unknown Vendor Invoice - Action Required\n\nAn invoice for $${extracted.amount.toLocaleString()} was received from "${extracted.vendor}" but no matching Purchase Order exists.\n\nPlease review and either create a PO or reject the invoice.\n\nFinance Agent`,
+      draftedEmail: `Subject: Unknown Vendor Invoice - Action Required\n\nAn invoice for $${extracted.amount.toLocaleString()} was received from "${extracted.vendor}" but no matching Purchase Order exists.\n\nPlease review and either create a PO or reject the invoice.\n\nZamp Finance Agent`,
     });
     return {
       status: "discrepancy",
@@ -47,7 +47,7 @@ export function matchInvoiceToPO(extracted: ExtractionResult): {
       timestamp: now,
       type: "chaser_sent",
       description: `Invoice is past due. Chaser email drafted for ${extracted.vendor}.`,
-      draftedEmail: `Subject: Overdue Invoice Reminder - ${extracted.invoiceNumber}\n\nDear ${extracted.vendor},\n\nInvoice ${extracted.invoiceNumber} for $${extracted.amount.toLocaleString()} was due on ${extracted.dueDate} and remains unpaid.\n\nPlease arrange payment at your earliest convenience.\n\nFinance Agent`,
+      draftedEmail: `Subject: Overdue Invoice Reminder - ${extracted.invoiceNumber}\n\nDear ${extracted.vendor},\n\nInvoice ${extracted.invoiceNumber} for $${extracted.amount.toLocaleString()} was due on ${extracted.dueDate} and remains unpaid.\n\nPlease arrange payment at your earliest convenience.\n\nZamp Finance Agent`,
     });
     return {
       status: "overdue",
@@ -63,7 +63,7 @@ export function matchInvoiceToPO(extracted: ExtractionResult): {
       timestamp: now,
       type: "flagged_discrepancy",
       description: `Invoice amount $${extracted.amount.toLocaleString()} differs from PO ${po.id} ($${po.amount.toLocaleString()}) by ${(variance * 100).toFixed(1)}%. Flagged for approval.`,
-      draftedEmail: `Subject: Invoice Discrepancy - ${extracted.invoiceNumber} requires approval\n\nHi,\n\nInvoice ${extracted.invoiceNumber} from ${extracted.vendor} has a discrepancy:\n\n• PO Amount: $${po.amount.toLocaleString()}\n• Invoice Amount: $${extracted.amount.toLocaleString()}\n• Difference: ${diff > 0 ? "+" : ""}$${diff.toLocaleString()} (${(variance * 100).toFixed(1)}%)\n\nPlease approve or reject this invoice.\n\nFinance Agent`,
+      draftedEmail: `Subject: Invoice Discrepancy - ${extracted.invoiceNumber} requires approval\n\nHi,\n\nInvoice ${extracted.invoiceNumber} from ${extracted.vendor} has a discrepancy:\n\n• PO Amount: $${po.amount.toLocaleString()}\n• Invoice Amount: $${extracted.amount.toLocaleString()}\n• Difference: ${diff > 0 ? "+" : ""}$${diff.toLocaleString()} (${(variance * 100).toFixed(1)}%)\n\nPlease approve or reject this invoice.\n\nZamp Finance Agent`,
     });
     return {
       status: "discrepancy",
@@ -79,7 +79,7 @@ export function matchInvoiceToPO(extracted: ExtractionResult): {
     timestamp: now,
     type: "auto_approved",
     description: `Invoice matched ${po.id} within ${(variance * 100).toFixed(1)}% variance. Auto-approved.`,
-    draftedEmail: `Subject: Payment Confirmation - ${extracted.invoiceNumber}\n\nDear ${extracted.vendor},\n\nThis confirms receipt and approval of invoice ${extracted.invoiceNumber} for $${extracted.amount.toLocaleString()}.\nPayment has been scheduled for ${extracted.dueDate}.\n\nFinance Agent`,
+    draftedEmail: `Subject: Payment Confirmation - ${extracted.invoiceNumber}\n\nDear ${extracted.vendor},\n\nThis confirms receipt and approval of invoice ${extracted.invoiceNumber} for $${extracted.amount.toLocaleString()}.\nPayment has been scheduled for ${extracted.dueDate}.\n\nZamp Finance Agent`,
   });
   agentActions.push({
     timestamp: now,

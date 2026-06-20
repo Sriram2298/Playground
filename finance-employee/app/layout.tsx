@@ -7,7 +7,7 @@ import DemoBanner from "@/components/DemoBanner";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Finance Agent",
+  title: "Finance Agent – Zamp",
   description: "Autonomous AP/AR digital employee",
 };
 
